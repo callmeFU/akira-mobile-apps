@@ -1,0 +1,315 @@
+<ons-page id="Reservasi">
+    <ons-toolbar>
+        <div class="center" style="text-align: center;">
+            PESAN RESERVASI
+        </div>
+    </ons-toolbar>
+    <div>
+        <ons-card>
+            <ons-list id="list-utama">
+                <ons-list-item modifier="longdivider">
+                    <ons-row>
+                        <ons-col width="40%" style="text-align: right">
+                            Tempat :
+                        </ons-col>
+                        <ons-col width="2%"></ons-col>
+                        <ons-col width="58%">
+                            <label>Akira Reflexology</label>
+                            <!-- <ons-input id="input-tempat" readonly maxlength="20" type="text" modifier="transparent" style="width: 100%;" value="Akira Reflexology"></ons-input> -->
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+                <!--niatnya date picker dan time picker skalian-->
+                <ons-list-item modifier="longdivider">
+                    <ons-row>
+                        <ons-col width="40%" style="text-align: right">
+                            Waktu :
+                        </ons-col>
+                        <ons-col width="2%"></ons-col>
+                        <ons-col width="58%" style="text-align: left">
+                            <ons-input type="button" id="input-tanggal" modifier="transparent" style="width: 100%; text-align: left" onclick="calendar()" placeholder=""></ons-input>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+            </ons-list>
+            <div id="list-isi">
+
+            </div>
+            <div id="list-pesanan"></div>
+            <!-- <ons-list id="list-pesanan" modifier="inset"></ons-list> -->
+            <!-- <ons-list modifier="inset">
+                <ons-list-item modifier="longdivider">
+                    <ons-row>
+                        <ons-col width="40%" style="text-align: right">
+                            Jenis Kelamin:
+                        </ons-col>
+                        <ons-col width="2%"></ons-col>
+                        <ons-col width="58%">
+                            <ons-radio name="jenisKelamin" id="radio-tipe-jenis-kelamin" value="l" input-id="radio-1" checked>Pria</ons-radio>
+                            <ons-radio name="jenisKelamin" id="radio-tipe-jenis-kelamin" value="p" input-id="radio-2">Wanita</ons-radio>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                    <ons-row>
+                        <ons-col width="40%" style="text-align: right">
+                            Paket Jasa :
+                        </ons-col>
+                        <ons-col width="2%"></ons-col>
+                        <ons-col width="58%">
+                            <ons-input id="input-paket-jasa" type="text" modifier="transparent" style="width: 100%;" placeholder=""></ons-input>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                    <ons-row align="center">
+                        <ons-col width="40%" style="text-align: right">
+                            Terapis :
+                        </ons-col>
+                        <ons-col width="2%"></ons-col>
+                        <ons-col width="58%">
+                            <ons-input id="input-terapis" type="text" modifier="transparent" style="width: 100%;" placeholder=""></ons-input>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                    <ons-row>
+                        <ons-col width="42%"></ons-col>
+                        <ons-col width="58%">
+                            <ons-button id="tombol-tambah-pesanan" modifier="large">Tambah</ons-button>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+            </ons-list> -->
+            <ons-list-item modifier="longdivider">
+                <ons-row>
+                    <ons-col width="40%" style="text-align: right">
+                        Estimasi Biaya :
+                    </ons-col>
+                    <ons-col width="2%"></ons-col>
+                    <ons-col width="58%" id="estimasi-harga">
+                        Rp.
+                    </ons-col>
+                </ons-row>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider">
+                <ons-row>
+                    <ons-col width="48%">
+                        <ons-button id="tombol-batal" modifier="large" style="background: #ddd;" onclick="bersihkan()">Bersihkan</ons-button>
+                    </ons-col>
+                    <ons-col width="4%"></ons-col>
+                    <ons-col width="48%">
+                        <ons-button id="tombol-pesan" modifier="large">Pesan</ons-button>
+                    </ons-col>
+                </ons-row>
+            </ons-list-item>
+            </ons-list>
+        </ons-card>
+    </div>
+    <ons-modal direction="up" id="ons-modal5">
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+            </p>
+        </div>
+    </ons-modal>
+    <script>
+        //fungsi untuk memilih tanggal
+        var hari4;
+        var tanggal4;
+        function calendar() {
+            let options = {
+                type: 'date',         // 'date' or 'time', required
+                date: new Date(),     // date or timestamp, default: current date
+                minDate: new Date()  // date or timestamp
+                //maxDate: new Date()   // date or timestamp
+            };
+
+            window.DateTimePicker.pick(options, function (timestamp) {
+                const date = new Date(timestamp).toDateString();
+                var hari = date.substr(0, 3);
+                var bulan = date.substr(4, 3);
+                var tgl = date.substr(8, 2);
+                var thn = date.substr(11, 4);
+                var hari1 = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                var hari2 = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+                var hari3 = 0;
+                for (let i = 0; i < hari1.length; i++) {
+                    if (hari == hari1[i]) {
+                        hari3 = i;
+                        break;
+                    }
+                }
+                hari4 = hari2[hari3];
+                var bulan1 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                var bulan2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+                var bulan3 = 0;
+                for (let i = 0; i < bulan1.length; i++) {
+                    if (bulan == bulan1[i]) {
+                        bulan3 = i;
+                        break;
+                    }
+                }
+                tanggal4 = thn + "-" + bulan2[bulan3] + "-" + tgl;
+                document.getElementById("input-tanggal").value = tgl + "-" + bulan2[bulan3] + "-" + thn + ", ";
+                time();
+            });
+        }
+        function time() {
+            let options = {
+                type: 'time',         // 'date' or 'time', required
+                date: new Date(),     // date or timestamp, default: current date
+                minDate: new Date()  // date or timestamp
+                //maxDate: new Date('21:00')   // date or timestamp
+            };
+
+            window.DateTimePicker.pick(options, function (timestamp) {
+                const time = new Date(timestamp).toTimeString();
+                var time2 = time.substr(0, 5);
+                var jam = time.substr(0, 2);
+                var menit = time.substr(3, 2);
+                var jam2;
+                if (Number(menit) >= 45) {
+                    jam2 = Number(jam) + 1 + ':00';
+                } else if (Number(menit) >= 30) {
+                    jam2 = jam + ':45';
+                } else if (Number(menit) >= 15) {
+                    jam2 = jam + ':30';
+                } else {
+                    jam2 = jam + ':15';
+                }
+                tampilMenuTambah();
+                document.getElementById("input-tanggal").value += jam2;
+                var waktuReservasiUser = jam2 + ':00';
+                setTanggalReservasi(waktuReservasiUser, hari4, tanggal4);
+            });
+        }
+        // ons.getScriptPage().onInit = function () {
+        //     // hapusReservasi();
+        //     bersihkan();
+        // };
+
+        ons.getScriptPage().onShow = function () {
+            Authenticate();
+            try {
+                if (produkDipilih == null) {
+                    $('#input-paket-jasa').val("");
+                } else {
+                    $('#input-paket-jasa').val(produkDipilih + ', ' + waktuProdukDipilih);
+                    $('#estimasi-harga').html('Rp. ' + numberWithCommas(totalHarga));
+                }
+            } catch (err) {
+                ons.notification.alert(err);
+            }
+
+            try {
+                if (terapisDipilih == null) {
+                    $('#input-terapis').val("");
+                } else {
+                    $('#input-terapis').val(terapisDipilih);
+                }
+            } catch (err) {
+                ons.notification.alert(err);
+            }
+
+
+        };
+        function tampilMenuTambah() {
+            $('#list-isi').empty();
+            $('#list-isi').append('<ons-list modifier="inset" id="list-tambah"><ons-list-item modifier="longdivider">' +
+                '<ons-row><ons-col width="40%" style="text-align: right">Jenis Kelamin:</ons-col><ons-col width="2%"></ons-col>' +
+                '<ons-col width="58%"><ons-radio name="jenisKelamin" id="radio-tipe-jenis-kelamin" value="l" input-id="radio-1" checked>Pria</ons-radio>' +
+                '<ons-radio name="jenisKelamin" id="radio-tipe-jenis-kelamin" value="p" input-id="radio-2">Wanita</ons-radio></ons-col></ons-row></ons-list-item>' +
+                '<ons-list-item modifier="longdivider"><ons-row><ons-col width="40%" style="text-align: right">Paket Jasa :</ons-col>' +
+                '<ons-col width="2%"></ons-col><ons-col width="58%" style="text-align: left">' +
+                '<ons-input type="button" id="input-paket-jasa" type="text" modifier="transparent" style="width: 100%;" placeholder=""></ons-input>' +
+                '</ons-col></ons-row></ons-list-item></ons-list>');
+            $('#input-paket-jasa').on('click', function () {
+                document.querySelector('#myNavigator').pushPage('daftar-produk.html');
+            });
+        };
+        function tampilTerapis() {
+            $('#list-terapis').remove();
+            $('#list-tambah').append('<div id="list-terapis"><ons-list-item modifier="longdivider"><ons-row align="center">' +
+                '<ons-col width="40%" style="text-align: right">Terapis :</ons-col><ons-col width="2%"></ons-col><ons-col width="58%">' +
+                '<ons-input type="button" id="input-terapis" type="text" modifier="transparent" style="width: 100%;" placeholder=""></ons-input></ons-col></ons-row></ons-list-item>' +
+                '<ons-list-item modifier="longdivider"><ons-row><ons-col width="42%"></ons-col><ons-col width="58%"><ons-button id="tombol-tambah-pesanan" modifier="large">Tambah</ons-button></ons-col></ons-row></ons-list-item></div>');
+            $('#input-terapis').on('click', function () {
+                // hitungJamBerakhir(jamReservasi);
+                var waktu = jamReservasi;
+                var jam = waktu.substr(0, 2);
+                var menit = waktu.substr(3, 2);
+                var jam2 = Number(jam) * 60;
+                var menit2 = Number(menit);
+                var hitung = jam2 + menit2 + waktuProdukDipilih;
+                var jam3 = hitung / 60;
+                var menit3 = hitung % 60;
+                var jamnya = String(jam3).substr(0, 2);
+                jamBerakhirReservasi = jamnya + ':' + menit3 + ':00';
+                // ons.notification.alert('ini ' + jamBerakhirReservasi);
+                document.querySelector('#myNavigator').pushPage('daftar-terapis.html');
+            });
+            $('#tombol-tambah-pesanan').on('click', function () {
+
+                if (document.getElementById("input-terapis").value != "") {
+                    let coba = waktuProdukDipilih;
+                    arrayPesanan.push({ 'id': iterasi, 'id_produk': idProdukDipilih, 'id_terapis': idTerapisDipilih });
+                    // ons.notification.alert(String(arrayPesanan.length));
+                    var listPesanan = '<ons-list-item modifier="longdivider" style="background-color: #ccffcf" id="dataList-' + iterasi + '">' +
+                        '<ons-row>' +
+                        '<ons-col width="52%">' + produkDipilih + ', ' + waktuProdukDipilih + '</ons-col>' +
+                        '<ons-col width="23%">' + hargaProdukDipilih + '</ons-col>' +
+                        '<ons-col width="22%">' + terapisDipilih + '</ons-col>' +
+                        '<ons-col width="3%"><ons-icon icon="ion-navicon, material:md-close-circle-o" onClick="deleteItem(' + iterasi + ',' + hargaProdukDipilih + ')"></ons-icon></ons-col>' +
+                        '</ons-row>' +
+                        '</ons-list-item>';
+
+                    document.getElementById('list-pesanan').innerHTML += listPesanan;
+                    totalHarga = totalHarga + hargaProdukDipilih;
+                    let hargaFinal = numberWithCommas(totalHarga);
+                    $('#estimasi-harga').html('Rp. ' + hargaFinal);
+                    iterasi++;
+                    hargaProdukDipilih = null;
+                    tanggalReservasi = null;
+                    terapisDipilih = null;
+                    document.getElementById("input-paket-jasa").value = null;
+                    $('#list-terapis').remove();
+                } else {
+                    ons.notification.alert("terapis masih kosong");
+                }
+            });
+        };
+        var deleteItem = function (angka, harga) {
+            for (var i = 0; i < arrayPesanan.length; i++) {
+                var obj = arrayPesanan[i];
+
+                if (obj.id === angka) {
+                    arrayPesanan.splice(i, 1);
+                    console.log("terhapus");
+                }
+            }
+            totalHarga -= harga;
+            let hargaFinal = numberWithCommas(totalHarga);
+            $('#estimasi-harga').html('Rp. ' + hargaFinal);
+            $("#dataList-" + angka).remove();
+        };
+        var bersihkan = function () {
+            var l = iterasi;
+            for (i = 0; i < l; i++) {
+                deleteItem(i, 0)
+            }
+            document.getElementById("input-tanggal").value = null;
+            document.getElementById("estimasi-harga").innerHTML = "Rp. ";
+            produkDipilih = null;
+            waktuProdukDipilih = null;
+            hargaProdukDipilih = null;
+            tanggalReservasi = null;
+            terapisDipilih = null;
+            arrayPesanan = [];
+            iterasi = 0;
+            totalHarga = 0;
+            $('#list-isi').empty();
+            $('#list-pesanan').empty();
+        };
+    </script>
+</ons-page>

@@ -1,0 +1,74 @@
+<ons-page id="Daftar-terapis">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">
+            DAFTAR TERAPIS
+        </div>
+    </ons-toolbar>
+    <ons-pull-hook id="pull-hook4" threshold-height="120px">
+        <ons-icon id="pull-hook-icon4" size="22px" class="pull-hook-content" icon="fa-arrow-down"></ons-icon>
+    </ons-pull-hook>
+    <ons-list id="daftar-terapis">
+
+    </ons-list>
+    <script>
+        ons.getScriptPage().onShow = function () {
+            Authenticate();
+            tampilkanTerapis();  
+            var pullHook = document.getElementById('pull-hook4');
+            var icon = document.getElementById('pull-hook-icon4');
+            pullHook.addEventListener('changestate', function (event) {
+                switch (event.state) {
+                    case 'initial':
+                        icon.setAttribute('icon', 'fa-arrow-down');
+                        icon.removeAttribute('rotate');
+                        icon.removeAttribute('spin');
+                        break;
+                    case 'preaction':
+                        icon.setAttribute('icon', 'fa-arrow-down');
+                        icon.setAttribute('rotate', '180');
+                        icon.removeAttribute('spin');
+                        break;
+                    case 'action':
+                        icon.setAttribute('icon', 'fa-spinner');
+                        icon.removeAttribute('rotate');
+                        icon.setAttribute('spin', true);
+                        break;
+                }
+            });
+            pullHook.onAction = function (done) {
+                setTimeout(function () {
+                    $('#daftar-terapis').empty();
+                    tampilkanTerapis();
+                    done();
+                }, 400);
+            }
+            function tampilkanTerapis() {
+                let loadingCircle = $("<div style='text-align:center;'> <ons-progress-circular id='loading'  indeterminate></ons-progress-circular></div>");
+                $("#daftar-terapis").append(loadingCircle);
+                // ons.notification.alert(jamBerakhirReservasi);
+                let tanggal = tanggalReservasi + ' ' + jamReservasi;
+                $.ajax({
+                    type: 'GET',
+                    url: _URL + 'query{CekKetersediaanTerapis(hari: "' + hariReservasi + '", tanggal: "' + tanggal + '", jam_berakhir:"' + jamBerakhirReservasi + '") {id, nama}}',
+                    success: function (data) {
+                        $('#loading').remove();
+                        //konsumsi ae borr
+                        $.each(data.data.CekKetersediaanTerapis, function (key, karyawan) {
+                            $('#daftar-terapis').append('<ons-list-item tappable id="terapis-' + key + '"><span class="list-item__title">' + karyawan.nama + '</span><span class="list-item__subtitle">id : ' + karyawan.id + '</span></ons-list-item>');
+                            $('#terapis-' + key).on('click', function () {
+                                setDataTerapis(karyawan.nama, karyawan.id);
+                            });
+                        });
+                        console.log(data);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            };
+        };
+    </script>
+</ons-page>

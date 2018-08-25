@@ -1,0 +1,52 @@
+<ons-page id="AturSandi">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">
+            ATUR KATA SANDI
+        </div>
+    </ons-toolbar>
+    <ons-card>
+        <div style="text-align: center">
+            <ons-list>
+                <!-- <ons-list-header>Ubah Kata Sandi</ons-list-header> -->
+                <ons-list-item modifier="nodivider">
+                    <ons-input id="kataSandi-lama" modifier="transparent" type="password" placeholder="Kata sandi saat ini" float></ons-input>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider">
+                    <ons-input id="kataSandi-baru" modifier="transparent" type="password" placeholder="Kata sandi baru" float></ons-input>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider">
+                    <ons-input id="kataSandi-barulagi" modifier="transparent" type="password" placeholder="Kata sandi baru sekali lagi" float></ons-input>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider">
+                    <ons-row align="center">
+                        <ons-col width=48%>
+                            <ons-button id="tombol-batal-kataSandi" modifier="large"> batal</ons-button>
+                        </ons-col>
+                        <ons-col width=4%></ons-col>
+                        <ons-col width=48% style="text-align: center">
+                            <span>
+                                <ons-button id="tombol-simpan-pass" modifier="large"> simpan</ons-button>
+                            </span>
+                        </ons-col>
+                    </ons-row>
+                </ons-list-item>
+            </ons-list>
+        </div>
+    </ons-card>
+    <ons-modal direction="up" id="ons-modal3">
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+            </p>
+        </div>
+    </ons-modal>
+    <script>
+        ons.getScriptPage().onShow = function () {
+            Authenticate();
+        }
+
+    </script>
+</ons-page>

@@ -1,0 +1,72 @@
+<ons-page id="Profil">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">
+            PROFIL
+        </div>
+    </ons-toolbar>
+    <!--card edit profil-->
+    <ons-card>
+        <ons-row align="center">
+            <ons-col width=30%>
+                <img src="img/akria_hitam.png" style="height: 80%; width: 80%;">
+            </ons-col>
+            <ons-col width=70% style="text-align: center">
+                <span id="nama-user">.</span>
+                <br>
+                <span>
+                    <ons-button id="tombol-atur-profil" modifier="large"> Atur Profil</ons-button>
+                </span>
+            </ons-col>
+        </ons-row>
+    </ons-card>
+    <ons-card>
+        <div><strong>Ubah Kata Sandi</strong></div>
+        <ons-row align="center">
+            <ons-col width=30%></ons-col>
+            <ons-col width=70% style="text-align: center">
+                <ons-button id="tombol-kata-sandi" modifier="large">Atur Kata Sandi</ons-button>
+            </ons-col>
+        </ons-row>
+    </ons-card>
+    <!-- <ons-card>
+        <div>Kata Sandi</div>
+        <ons-row align="center">
+            <ons-col width=30%>
+                <img src="img/akria_hitam.png" style="height: 80%; width: 80%;">
+            </ons-col>
+            <ons-col width=70% style="text-align: center">
+                <span>
+                    <ons-button id="kataSandi" modifier="large">Atur Kata Sandi</ons-button>
+                </span>
+            </ons-col>
+        </ons-row>
+    </ons-card> -->
+    <ons-card>
+        <div><strong>Data Diri</strong></div>
+        <div style="padding-left: 5%; padding-top: 2%">Info ini hanya bisa dilihat oleh anda</div>
+        <div style="padding-top: 2%"><strong>Nomor Ponsel</strong></div>
+        <div style="padding-left: 5%; padding-top: 2%" id="nomor-telp">0</div>
+    </ons-card>
+    <ons-card>
+        <div><strong>Keluar</strong></div>
+        <ons-row align="center">
+            <ons-col width=30%></ons-col>
+            <ons-col width=70% style="text-align: center">
+                <span>
+                    <ons-button id="tombol-atur-keluar" modifier="large"> keluar</ons-button>
+                </span>
+            </ons-col>
+        </ons-row>
+    </ons-card>
+    <script>
+        ons.getScriptPage().onShow = function () {
+            Authenticate();
+            document.getElementById("nama-user").innerHTML = _NAMA_USER;
+            document.getElementById("nomor-telp").innerHTML = _ID_USER;
+        };
+        // testHistory();
+    </script>
+</ons-page>

@@ -1,0 +1,38 @@
+<!--halaman login-->
+<ons-page id="login">
+    <ons-card style="margin-top: 10%">
+        <div style="text-align: center; margin-top: 5%; margin-bottom: 5%; ">
+            <img src="img/akria_hitam.png" alt="" style="max-width: 120px; max-height: 120px;">
+        </div>
+        <div style="text-align: center;">
+            <p>
+                <ons-input id="ponsel-masuk" type="number" style="width: 50%;" modifier="transparent" placeholder="Nomor Ponsel" float></ons-input>
+            </p>
+            <p>
+                <ons-input id="pass-masuk" type="password" style="width: 50%;" modifier="transparent" placeholder="Kata Sandi" float></ons-input>
+            </p>
+            <ons-button id="btnMasuk" style="width: 50%;">Masuk</ons-button>
+        </div>
+    </ons-card>
+    <ons-card>
+        <div style="text-align: center;"> Belum memiliki akun?
+            <ons-button id="user-daftar" modifier="quiet">Daftar</ons-button>
+        </div>
+    </ons-card>
+
+
+    <ons-modal direction="up" id="ons-modal">
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+            </p>
+        </div>
+    </ons-modal>
+    <script>
+        ons.getScriptPage().onInit = function () {
+            var contoh = 100000;
+            console.log(numberWithCommas(contoh));
+        };
+    </script>
+
+</ons-page>

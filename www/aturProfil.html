@@ -1,0 +1,44 @@
+<ons-page id="AturProfil">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">
+            ATUR PROFIL
+        </div>
+    </ons-toolbar>
+    <ons-card>
+        <ons-list>
+            <!-- <ons-list-header>Masukkan Nama Baru</ons-list-header> -->
+            <ons-list-item modifier="nodivider">
+                <ons-input id="nama-user-baru" modifier="transparent" placeholder="Masukkan Nama Baru" float></ons-input>
+            </ons-list-item>
+        </ons-list>
+        <br>
+        <ons-row align="center">
+            <ons-col width=48%>
+                <span>
+                    <ons-button id="batal-simpan" modifier="large">batal</ons-button>
+                </span>
+            </ons-col>
+            <ons-col width=4%></ons-col>
+            <ons-col width=48% style="text-align: center">
+                <span>
+                    <ons-button id="tombol-simpan-nama-profil" modifier="large"> simpan</ons-button>
+                </span>
+            </ons-col>
+        </ons-row>
+    </ons-card>
+    <ons-modal direction="up" id="ons-modal4">
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+            </p>
+        </div>
+    </ons-modal>
+    <script>
+        ons.getScriptPage().onShow = function () {
+            Authenticate();
+        }
+    </script>
+</ons-page>

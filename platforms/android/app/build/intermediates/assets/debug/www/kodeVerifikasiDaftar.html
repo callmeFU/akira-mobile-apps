@@ -1,0 +1,47 @@
+<ons-page id="AturProfil">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="center">
+            Kode Verifikasi
+        </div>
+    </ons-toolbar>
+    <ons-card>
+        <div>Nomor Ponsel Anda :</div>
+        <div class="content" id="nomor-telp-daftar">08xxxxxxxxxx</div>
+        <br>
+        <div>Masukkan kode yang anda terima :</div>
+        <div class="content">
+            <ons-input modifier="transparent" placeholder="Kode Verifikasi"></ons-input>
+        </div>
+        <br>
+        <ons-row align="center">
+            <ons-col width=48%>
+                <span>
+                    <ons-button id="tombol-batal-verifikasi" modifier="large"> batal</ons-button>
+                </span>
+            </ons-col>
+            <ons-col width=4%></ons-col>
+            <ons-col width=48% style="text-align: center">
+                <span>
+                    <ons-button id="tombol-oke-verifikasi" modifier="large"> oke</ons-button>
+                </span>
+            </ons-col>
+        </ons-row>
+        <br>
+        <br>
+        <br>
+        <ons-row>
+            <ons-col width=58% align="center" style="text-align: right">
+                Belum menerima kode?
+            </ons-col>
+
+            <ons-col width=42S% align="left">
+                <span>
+                    <ons-button id="tombol-kirim-ulang" modifier="quiet">Kirim ulang</ons-button>
+                </span>
+            </ons-col>
+        </ons-row>
+    </ons-card>
+</ons-page>

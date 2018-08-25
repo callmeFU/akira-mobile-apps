@@ -1,0 +1,51 @@
+<ons-page id="More">
+    <ons-toolbar>
+        <div class="center" style="text-align: center;">
+            MORE
+        </div>
+    </ons-toolbar>
+    <ons-list style="height: 100%;">
+        <ons-list-item tappable id="profilUser" modifier="longdivider">
+            <div class="left">
+                <ons-icon icon="md-account" size="20px, material:25px"></ons-icon>
+            </div>
+            <div class="center">
+                <p>Profil</p>
+            </div>
+        </ons-list-item>
+        <ons-list-item tappable id="voucherUser" modifier="longdivider">
+            <div class="left">
+                <ons-icon icon="ion-document-text" size="20px, material:25px"></ons-icon>
+            </div>
+            <div class="center">
+                <p>Voucher Saya</p>
+            </div>
+        </ons-list-item>
+        <ons-list-item tappable id="about" modifier="longdivider">
+            <div class="left">
+                <ons-icon icon="fa-question-circle-o" size="20px, material:25px"></ons-icon>
+            </div>
+            <div class="center">
+                <p>About</p>
+            </div>
+        </ons-list-item>
+    </ons-list>
+    <script>
+        ons.getScriptPage().onInit = function () {
+            Authenticate();
+            //get untuk halaman about agar lgsg keLoad
+            $.ajax({
+                type: 'post',
+                url: _URL + 'query{AboutQuery{nama,alamat,kontak}}',
+                success: function (data) {
+                    let isi = ('<span>' + data.data.AboutQuery[0].nama + '</span><br><span>Alamat : ' + data.data.AboutQuery[0].alamat + '</span><br><span>Kontak Kami :' + data.data.AboutQuery[0].kontak + '</span>');
+                    setDataAbout(isi);
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        };
+    </script>
+</ons-page>
