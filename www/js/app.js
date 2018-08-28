@@ -34,8 +34,12 @@ document.addEventListener('init', function (event) {
             var userMasuk = document.getElementById("ponsel-masuk").value;
             var passMasuk = document.getElementById("pass-masuk").value;
             console.log(userMasuk, passMasuk);
+            if (userMasuk != "" && passMasuk !=""){
             Login(userMasuk, passMasuk); // masuk ke authentication.js
             // document.querySelector('#myNavigator').pushPage('index.html');
+            } else {
+                ons.notification.alert('masukkan Username atau Password anda')
+            }
         };
         page.querySelector('#user-daftar').onclick = function () {
             document.querySelector('#myNavigator').pushPage('daftar.html');
@@ -55,7 +59,7 @@ document.addEventListener('init', function (event) {
                 if (passDaftar === passDaftarLagi) {
                     $.ajax({
                         type: 'POST',
-                        url: _URL + 'mutation{AddUser (nama:"' + namaDaftar + '", username:"' + nomorDaftar + '", password:"' + passDaftar + '", jenis_kelamin:"' + jenisKelamin + '"){id, nama, username}}',
+                        url: _URL + 'mutation{AddUser (nama:"' + namaDaftar + '", username:"' + nomorDaftar + '", password:"' + passDaftar + '", jk:"' + jenisKelamin + '"){id, nama, username}}',
                         success: function (data) {
                             document.querySelector('#ons-modal2').hide();
                             ons.notification.alert("anda telah berhasil mendaftar");
@@ -68,6 +72,7 @@ document.addEventListener('init', function (event) {
                             document.getElementById("ponsel-daftar").value = "";
                             document.getElementById("nama-daftar").value = "";
                             document.getElementById("pass-daftar").value = "";
+                            document.getElementById("pass-daftar-2").value = "";
                         }
                     });
                 } else {
@@ -105,7 +110,14 @@ document.addEventListener('init', function (event) {
         //     document.querySelector('#myNavigator').pushPage('ubahNomor.html');
         // };
         page.querySelector('#tombol-atur-keluar').onclick = function () {
-            Logout();
+            // showModal8();
+            // function showModal8() {
+                document.querySelector('#ons-modal8').show();
+                setTimeout(function () {
+                    document.querySelector('#ons-modal8').hide();
+                    Logout();
+                }, 2000);
+            // }
         };
     } else if (page.id === 'AturProfil') {
         page.querySelector('#tombol-simpan-nama-profil').onclick = function () {
@@ -448,6 +460,7 @@ function showModal6() {
 function showModal7() {
     document.querySelector('#ons-modal7').show();
 }
+
 
 // hide dialog pada halaman reservasiUser
 var hideDialogReser = function () {
