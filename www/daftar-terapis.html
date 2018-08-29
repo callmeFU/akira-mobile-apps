@@ -51,14 +51,29 @@
                 let jenisKelamin2 = $('input[name=jenisKelamin2]:checked').val();
                 // ons.notification.alert(jenisKelamin2);
                 let tanggal = tanggalReservasi + ' ' + jamReservasi;
+                // var daftar_terapis;
                 $.ajax({
                     type: 'GET',
                     url: _URL + 'query{CekKetersediaanTerapis(hari: "' + hariReservasi + '", tanggal: "' + tanggal + '", jam_berakhir:"' + jamBerakhirReservasi + '", jk:"' + jenisKelamin2 + '") {id, nama}}',
                     success: function (data) {
+                        // daftar_terapis = data;
                         $('#loading').remove();
-                        //konsumsi ae borr
                         $.each(data.data.CekKetersediaanTerapis, function (key, karyawan) {
-                            $('#daftar-terapis').append('<ons-list-item tappable id="terapis-' + key + '"><span class="list-item__title">' + karyawan.nama + '</span></ons-list-item>');
+                            let flag=false;
+                            // ons.notification.alert(String(arrayPesanan.length));
+                            if (arrayPesanan.length > 0) {
+                                for (let i = 0; i < arrayPesanan.length; i++) {
+                                    if (arrayPesanan[i].id_terapis == karyawan.id) {
+                                        flag=true;
+                                        break;
+                                    } 
+                                }
+                                if (flag==false){
+                                    $('#daftar-terapis').append('<ons-list-item tappable id="terapis-' + key + '"><span class="list-item__title">' + karyawan.nama + '</span></ons-list-item>');
+                                }
+                            } else {
+                                $('#daftar-terapis').append('<ons-list-item tappable id="terapis-' + key + '"><span class="list-item__title">' + karyawan.nama + '</span></ons-list-item>');
+                            }
                             // <span class="list-item__subtitle">id : ' + karyawan.id + '</span>
                             $('#terapis-' + key).on('click', function () {
                                 setDataTerapis(karyawan.nama, karyawan.id);
