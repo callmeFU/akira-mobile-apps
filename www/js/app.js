@@ -91,6 +91,7 @@ document.addEventListener('init', function (event) {
             window.FirebasePlugin.getToken(function (token) {
                 // save this server-side and use it to push notifications to this device
                 console.log(token);
+                ons.notification.alert(token);
             }, function (error) {
                 console.error(error);
             });

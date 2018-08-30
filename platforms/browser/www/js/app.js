@@ -90,7 +90,7 @@ document.addEventListener('init', function (event) {
         page.querySelector('#tombol_token').onclick = function () {
             window.FirebasePlugin.getToken(function (token) {
                 // save this server-side and use it to push notifications to this device
-                console.log(String(token));
+                console.log(token);
             }, function (error) {
                 console.error(error);
             });

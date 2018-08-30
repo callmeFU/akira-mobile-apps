@@ -34,9 +34,9 @@ document.addEventListener('init', function (event) {
             var userMasuk = document.getElementById("ponsel-masuk").value;
             var passMasuk = document.getElementById("pass-masuk").value;
             console.log(userMasuk, passMasuk);
-            if (userMasuk != "" && passMasuk !=""){
-            Login(userMasuk, passMasuk); // masuk ke authentication.js
-            // document.querySelector('#myNavigator').pushPage('index.html');
+            if (userMasuk != "" && passMasuk != "") {
+                Login(userMasuk, passMasuk); // masuk ke authentication.js
+                // document.querySelector('#myNavigator').pushPage('index.html');
             } else {
                 ons.notification.alert('masukkan Username atau Password anda')
             }
@@ -87,6 +87,15 @@ document.addEventListener('init', function (event) {
         page.querySelector('#user-masuk').onclick = function () {
             document.querySelector('#myNavigator').popPage();
         };
+        page.querySelector('#tombol_token').onclick = function () {
+            window.FirebasePlugin.getToken(function (token) {
+                // save this server-side and use it to push notifications to this device
+                console.log(token);
+                ons.notification.alert(String(token));
+            }, function (error) {
+                console.error(error);
+            });
+        }
         //halaman profil
     } else if (page.id === 'More') {
         page.querySelector('#profilUser').onclick = function () {
@@ -112,11 +121,11 @@ document.addEventListener('init', function (event) {
         page.querySelector('#tombol-atur-keluar').onclick = function () {
             // showModal8();
             // function showModal8() {
-                document.querySelector('#ons-modal8').show();
-                setTimeout(function () {
-                    document.querySelector('#ons-modal8').hide();
-                    Logout();
-                }, 2000);
+            document.querySelector('#ons-modal8').show();
+            setTimeout(function () {
+                document.querySelector('#ons-modal8').hide();
+                Logout();
+            }, 2000);
             // }
         };
     } else if (page.id === 'AturProfil') {
