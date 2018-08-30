@@ -16,7 +16,7 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
-    "cordova-plugin-fcm": {
+    "cordova-plugin-firebase": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },

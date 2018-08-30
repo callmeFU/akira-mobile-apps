@@ -15,11 +15,11 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-fcm/www/FCMPlugin.js",
-        "id": "cordova-plugin-fcm.FCMPlugin",
-        "pluginId": "cordova-plugin-fcm",
+        "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
+        "id": "cordova-plugin-firebase.FirebasePlugin",
+        "pluginId": "cordova-plugin-firebase",
         "clobbers": [
-            "FCMPlugin"
+            "FirebasePlugin"
         ]
     }
 ];
@@ -29,7 +29,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-datetimepicker": "1.0.0",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-fcm": "2.1.2"
+    "cordova-plugin-firebase": "1.1.0"
 }
 // BOTTOM OF METADATA
 });

@@ -23,10 +23,26 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-fcm": {
+  "cordova-plugin-firebase-messaging": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-fcm"
+      "id": "cordova-plugin-firebase-messaging@^1.1.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-support-android-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-support-android-plugin@~1.0.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-firebase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase"
     },
     "is_top_level": true,
     "variables": {}
