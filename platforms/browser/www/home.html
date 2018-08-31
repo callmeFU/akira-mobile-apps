@@ -29,10 +29,41 @@
         <ons-list-item>
             <img src="img/kupon3.jpg" style="width: 98%;">
         </ons-list-item>
+        <ons-list-item>
+            <ons-input id="token-masuk"></ons-input>
+        </ons-list-item>
     </ons-list>
     <script>
         ons.getScriptPage().onShow = function () {
             Authenticate();
         }
+        document.addEventListener('deviceready', function (event) {
+            window.FirebasePlugin.onNotificationOpen(function (notification) {
+                document.getElementById('token-masuk').value = 'token : ' + notification;
+                console.log(notification);
+            }, function (error) {
+                document.getElementById('token-masuk').value = 'eror : ' + error;
+                console.error(error);
+            });
+            // window.FirebasePlugin.onTokenRefresh(function (token) {
+            //     //save this server-side and use it to push notifications to this device
+            //     console.log(token);
+            // }, function (error) {
+            //     console.error(error);
+            // });
+        });
+
+        // window.FirebasePlugin.onTokenRefresh(function (token) {
+        //     // save this server-side and use it to push notifications to this device
+        //     ons.notification.alert(token);
+        //     document.getElementById('token-masuk').value = _TOKEN;
+        //     console.log(token);
+
+        // }, function (error) {
+        //     ons.notification.alert("error");
+        //     document.getElementById('token-masuk').value = _TOKEN;
+        //     console.error(error);
+        // });
+
     </script>
 </ons-page>

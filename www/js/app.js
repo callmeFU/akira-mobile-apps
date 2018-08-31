@@ -26,6 +26,7 @@ var idReservasi;
 var isiAbout;
 
 
+
 document.addEventListener('init', function (event) {
     var page = event.target;
     //halaman login
@@ -44,6 +45,7 @@ document.addEventListener('init', function (event) {
         page.querySelector('#user-daftar').onclick = function () {
             document.querySelector('#myNavigator').pushPage('daftar.html');
         };
+
         //halaman more
     } else if (page.id === 'Daftar') {
         page.querySelector('#btnDaftar').onclick = function () {
@@ -340,6 +342,9 @@ document.addEventListener('init', function (event) {
 
 });
 
+
+
+
 // fungsi isi data user
 function setDataUser(datatoken, nama, userId) {
     token = datatoken;
@@ -492,6 +497,8 @@ function hapusValuePass() {
     document.getElementById("kataSandi-baru").value = null;
     document.getElementById("kataSandi-barulagi").value = null;
 }
+
+
 
 // let durasi;
                 // if (waktuProdukDipilih == 30) {

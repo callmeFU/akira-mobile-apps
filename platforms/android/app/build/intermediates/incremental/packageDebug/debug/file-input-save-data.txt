@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Aug 30 12:17:12 ICT 2018
+#Thu Aug 30 14:08:18 ICT 2018
 20.base=C\:\\Users\\Ulil-L\\akira\\CRM-akira\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 143.base=C\:\\Users\\Ulil-L\\akira\\CRM-akira\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 340.file=C\:\\Users\\Ulil-L\\akira\\CRM-akira\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\onsenui\\esm\\ons\\page-loader.js
