@@ -38,16 +38,16 @@
             Authenticate();
         }
         document.addEventListener('deviceready', function (event) {
-            // window.FirebasePlugin.onNotificationOpen(function (notification) {
-            //     document.getElementById('token-masuk').value = 'token : ' + notification.tes;
-            //     ons.notification.alert(String(notification.tes));
-            //     console.log(notification.tes);
-            // }, function (error) {
-            //     document.getElementById('token-masuk').value = 'eror : ' + error;
-            //     console.error(error);
-            // });
-            window.FirebasePlugin.onTokenRefresh(function (token) {
-                //save this server-side and use it to push notifications to this device
+            window.FirebasePlugin.onNotificationOpen(function (notification) {
+                document.getElementById('token-masuk').value = 'notif : ' + notification.tes;
+                ons.notification.alert(String(notification.tes));
+                console.log(notification.tes);
+            }, function (error) {
+                document.getElementById('token-masuk').value = 'eror : ' + error;
+                console.error(error);
+            });
+            window.FirebasePlugin.getToken(function (token) {
+                //save this server-side d use it to push notifications to this device
                 document.getElementById('token-masuk').value = 'token : ' + token.token;
                 console.log(token);
             }, function (error) {
