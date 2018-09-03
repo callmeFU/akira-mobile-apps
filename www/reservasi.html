@@ -27,7 +27,8 @@
                         </ons-col>
                         <ons-col width="2%"></ons-col>
                         <ons-col width="58%" style="text-align: left">
-                            <ons-input type="button" id="input-tanggal" modifier="transparent" style="width: 100%; text-align: left" onclick="calendar()" placeholder=""></ons-input>
+                            <ons-input type="button" id="input-tanggal" modifier="transparent" style="width: 100%; text-align: left" onclick="calendar()"
+                                placeholder=""></ons-input>
                         </ons-col>
                     </ons-row>
                 </ons-list-item>
@@ -255,10 +256,10 @@
                     let coba = waktuProdukDipilih;
                     arrayPesanan.push({ 'id': iterasi, 'id_produk': idProdukDipilih, 'id_terapis': idTerapisDipilih });
                     // ons.notification.alert(String(arrayPesanan.length));
-                    var listPesanan = '<ons-list-item modifier="longdivider" style="background-color: #ccffcf" id="dataList-' + iterasi + '">' +
+                    var listPesanan = '<ons-list-item modifier="longdivider" style="background-color: #ccffcf;" id="dataList-' + iterasi + '">' +
                         '<ons-row>' +
                         '<ons-col width="52%">' + produkDipilih + ', ' + waktuProdukDipilih + '</ons-col>' +
-                        '<ons-col width="23%">' + hargaProdukDipilih + '</ons-col>' +
+                        '<ons-col width="23%">' + numberWithCommas(hargaProdukDipilih) + '</ons-col>' +
                         '<ons-col width="22%">' + terapisDipilih + '</ons-col>' +
                         '<ons-col width="3%"><ons-icon icon="ion-navicon, material:md-close-circle-o" onClick="deleteItem(' + iterasi + ',' + hargaProdukDipilih + ')"></ons-icon></ons-col>' +
                         '</ons-row>' +
@@ -270,6 +271,8 @@
                     $('#estimasi-harga').html('Rp. ' + hargaFinal);
                     iterasi++;
                     hargaProdukDipilih = null;
+                    produkDipilih = null;
+                    waktuProdukDipilih = null;
                     tanggalReservasi = null;
                     terapisDipilih = null;
                     document.getElementById("input-paket-jasa").value = null;
