@@ -1,6 +1,6 @@
 <ons-page id="Riwayat">
-    <ons-pull-hook id="pull-hook" threshold-height="120px">
-        <ons-icon id="pull-hook-icon" size="22px" class="pull-hook-content" icon="fa-arrow-down"></ons-icon>
+    <ons-pull-hook id="pull-hook2" threshold-height="120px">
+        <ons-icon id="pull-hook-icon2" size="22px" class="pull-hook-content" icon="fa-arrow-down"></ons-icon>
     </ons-pull-hook>
     <ons-list id="riwayatReservasi">
         <ons-list-header>Riwayat transaksi anda</ons-list-header>
@@ -32,8 +32,8 @@
         ons.getScriptPage().onShow = function () {
             Authenticate();
             tampilkanRiwayatSaya();
-            var pullHook = document.getElementById('pull-hook');
-            var icon = document.getElementById('pull-hook-icon');
+            var pullHook = document.getElementById('pull-hook2');
+            var icon = document.getElementById('pull-hook-icon2');
             pullHook.addEventListener('changestate', function (event) {
                 switch (event.state) {
                     case 'initial':
@@ -80,6 +80,14 @@
                             if (reser.status_reservasi[0].progress == "diterima" && reser.status_reservasi[0].status == "pending") {
                                 console.log("asw");
                             } else {
+                                let color;
+                                if (reser.status_reservasi[0].status == "batal"){
+                                    color = "antiquewhite";
+                                } else if (reser.status_reservasi[0].status == "ditolak"){
+                                    color = "crimson";
+                                }else{
+                                    color = "green";
+                                }
                                 let tanggal = reser.tanggal_reservasi;
                                 let thn = tanggal.substr(0, 4);
                                 let bln = tanggal.substr(5, 2);
@@ -87,14 +95,15 @@
                                 let jam = tanggal.substr(11, 5);
                                 let tanggal2 = hari + '-' + bln + '-' + thn + ', ' + jam;
                                 let id = reser.id;
-                                var list = $("<ons-list-item expandable><span><strong>" + tanggal2 + "</strong></span><div class='expandable-content' id='list-content-" + key + "'><span>Tempat\t : Akira Reflexology</span><br></div></ons-list-item>");
-                                $("#riwayatReservasi").append(list);
+                               // var list = $("<ons-list-item expandable><span><strong>" + tanggal2 + "</strong></span><div class='expandable-content' id='list-content-" + key + "'><span>Tempat\t : Akira Reflexology</span><br></div></ons-list-item>");
+                                var list2 = $('<ons-list-item style="background-color: '+color+'"><span class="list-item__title">' + tanggal2 + '</span><br><span class="list-item__subtitle" id="list-content-' + key + '">Tempat\t : Akira Reflexology<br></span></ons-list-item>');
+                                $("#riwayatReservasi").append(list2);
                                 //looping pesanannya
                                 $.each(reservasi.data.headerReservasi[key].detail_reservasi, function (key1, detail) {
                                     let idIsiReservasi = detail.header_reservasi_id;
                                     if (idIsiReservasi == id) {
                                         totalHargaUser = totalHargaUser + detail.produk_id.harga;
-                                        var isiList = $('<span>Jasa\t : ' + detail.produk_id.nama + ', ' + detail.produk_id.waktu + '</span><br><span>Nama Terapis\t: ' + detail.karyawan_id.nama + '</span><br><span>Status : ' + reser.status_reservasi[0].status + '<hr width="98%">');
+                                        var isiList = $('<hr width="98%"><span>Jasa\t : ' + detail.produk_id.nama + ', ' + detail.produk_id.waktu + '</span><br><span>Nama Terapis\t: ' + detail.karyawan_id.nama + '</span><br><span>Status : ' + reser.status_reservasi[0].status+'</span>' );
                                         $('#list-content-' + key).append(isiList);
                                     }
 
