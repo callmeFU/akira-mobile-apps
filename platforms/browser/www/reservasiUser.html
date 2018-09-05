@@ -106,19 +106,41 @@
                                     let jam = tanggal.substr(11, 5);
                                     let tanggal2 = hari + '-' + bln + '-' + thn + ', ' + jam;
                                     let id = reser.id;
-                                    var list = $("<ons-list-item expandable><span><strong>" + tanggal2 + "</strong></span><div class='expandable-content' id='isi-list-content-" + key + "'><span>Tempat\t : Akira Reflexology</span><br></div></ons-list-item>");
+                                    var list = $('<ons-list-item expandable><span><strong>' + tanggal2 + '</strong></span><div class="expandable-content" id="isi-list-content-' + key + '"><ons-row>' +
+                                        '<ons-col width="35%">Tempat</ons-col>' +
+                                        '<ons-col width="3%">:</ons-col>' +
+                                        '<ons-col width="50%">Akira Reflecology</ons-col></ons-row>' +
+                                        '</div></ons-list-item>');
                                     $("#reservasiUser").append(list);
                                     //looping pesanannya
                                     $.each(reservasi.data.headerReservasi[key].detail_reservasi, function (key1, detail) {
                                         let idIsiReservasi = detail.header_reservasi_id;
                                         if (idIsiReservasi == id) {
                                             totalHargaUser = totalHargaUser + detail.produk_id.harga;
-                                            var isiList = $('<span>Jasa\t : ' + detail.produk_id.nama + ', ' + detail.produk_id.waktu + '</span><br>Nama Terapis\t: ' + detail.karyawan_id.nama + '</span><hr width="98%">');
+                                            var isiList = $('<hr width="98%"><ons-row>' +
+                                                '<ons-col width = "35%" > Jasa</ons-col >' +
+                                                '<ons-col width="3%">:</ons-col>' +
+                                                '<ons-col width="50%">' + detail.produk_id.nama + ', ' + detail.produk_id.waktu + '</ons-col>' +
+                                                '</ons-row >' +
+                                                '<ons-row>' +
+                                                '<ons-col width="35%">Nama Terapis</ons-col>' +
+                                                '<ons-col width="3%">:</ons-col>' +
+                                                '<ons-col width="50%">' + detail.karyawan_id.nama + '</ons-col>' +
+                                                '</ons-row>');
+                                            // var isiList = $('<span>Jasa\t : ' + detail.produk_id.nama + ', ' + detail.produk_id.waktu + '</span><br>Nama Terapis\t: ' + detail.karyawan_id.nama + '</span><hr width="98%">');
                                             $('#isi-list-content-' + key).append(isiList);
                                         }
 
                                     });
-                                    var hargaDanTombol = $('<span>Pesanan Anda : ' + reser.status_reservasi[0].status + '</span><br><span>Estimasi Harga : ' + numberWithCommas(totalHargaUser) + '</span><hr width="98%"><ons-button id="reservasi-' + key + '">Batal</ons-button>');
+                                    var hargaDanTombol = $('<hr width="98%"><ons-row>' +
+                                        '<ons-col width="35%">Pesanan anda</ons-col>' +
+                                        '<ons-col width="3%">:</ons-col>' +
+                                        '<ons-col width="50%">' + reser.status_reservasi[0].status + '</ons-col></ons-row>' +
+                                        '<ons-row>' +
+                                        '<ons-col width="35%">Estimasi harga</ons-col>' +
+                                        '<ons-col width="3%">:</ons-col>' +
+                                        '<ons-col width="50%"> Rp.' + numberWithCommas(totalHargaUser) + '</ons-col></ons-row>' +
+                                        '<hr width="98%"><ons-button id="reservasi-' + key + '">Batal</ons-button>');
                                     $('#isi-list-content-' + key).append(hargaDanTombol);
                                     totalHargaUser = 0;
                                     $('#reservasi-' + key).on('click', function () {

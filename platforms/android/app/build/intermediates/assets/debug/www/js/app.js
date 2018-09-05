@@ -185,9 +185,9 @@ document.addEventListener('init', function (event) {
             }
         };
     } else if (page.id === 'Riwayat') {
-        page.querySelector('#riwayat-1').onclick = function () {
-            document.querySelector('#myNavigator').pushPage('ulasan.html');
-        };
+        // page.querySelector('#riwayat-1').onclick = function () {
+        //     document.querySelector('#myNavigator').pushPage('ulasan.html');
+        // };
     } else if (page.id === 'Reservasi') {
         // page.querySelector('#input-paket-jasa').onclick = function () {
         //     document.querySelector('#myNavigator').pushPage('daftar-produk.html');
